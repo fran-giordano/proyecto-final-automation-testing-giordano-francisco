@@ -32,7 +32,7 @@ pytest tests/test_saucedemo.py -v --html=reports/reporte.html
 pytest tests/test_saucedemo.py::TestLogin -v
 ```
 
-## 🧪 Casos de Prueba
+## Casos de Prueba
 | Test | Descripción | Criterio validado |
 |------|-------------|-------------------|
 | `test_login_exitoso` | Login con credenciales válidas | Redirect a `/inventory.html` + título "Swag Labs" |
