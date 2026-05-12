@@ -1,14 +1,14 @@
-# 🧪 Pre-Entrega: Automatización QA — SauceDemo
+#  Pre-Entrega: Automatización QA — SauceDemo
 
 Suite de pruebas automatizadas sobre [saucedemo.com] (https://www.saucedemo.com) utilizando Selenium WebDriver y Python.
 
-## 🛠 Tecnologías
+## Tecnologías
 - Python 3.10+
 - Selenium WebDriver
 - Pytest
 - Webdriver Manager
 
-## 📁 Estructura
+## Estructura
 pre-entrega-Atesting-[GiordanoFrancisco]/
 ├── tests/
 │   └── test_saucedemo.py
@@ -18,12 +18,12 @@ pre-entrega-Atesting-[GiordanoFrancisco]/
 ├── README.md
 └── requirements.txt
 
-## ⚙️ Instalación
+## Instalación
 ```bash
 pip install -r requirements.txt
 ```
 
-## ▶️ Ejecutar pruebas
+## Ejecutar pruebas
 ```bash
 # Ejecutar todos los tests con reporte HTML
 pytest tests/test_saucedemo.py -v --html=reports/reporte.html
