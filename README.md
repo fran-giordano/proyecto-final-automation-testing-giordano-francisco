@@ -9,6 +9,7 @@ Suite de pruebas automatizadas sobre [saucedemo.com] (https://www.saucedemo.com)
 - Webdriver Manager
 
 ## Estructura
+```
 pre-entrega-Atesting-[GiordanoFrancisco]/
 ├── tests/
 │   └── test_saucedemo.py
@@ -17,6 +18,7 @@ pre-entrega-Atesting-[GiordanoFrancisco]/
 ├── reports/
 ├── README.md
 └── requirements.txt
+```
 
 ## Instalación
 ```bash
