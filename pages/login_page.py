@@ -33,7 +33,7 @@ class LoginPage:
         self.driver.find_element(*self._LOGIN_BUTTON).click()
         return self
 
-    def login_completo(self, username: str, passw: str):
+    def login(self, username: str, passw: str):
         return self.usuario(username).password(passw).click()
 
     def obtener_error(self) -> bool:
@@ -46,3 +46,10 @@ class LoginPage:
     def obtener_error_texto(self) -> str:
         if self.obtener_error():
             return self.driver.find_element(*self._ERROR_MESSAGE).text
+        
+    def is_logged_in(self) -> bool:
+        # Verificar si el usuario ha iniciado sesión exitosamente
+        return "inventory" in self.driver.current_url
+    
+    def has_error(self) -> bool:
+        return self.obtener_error()

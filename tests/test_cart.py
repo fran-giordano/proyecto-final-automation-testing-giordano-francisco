@@ -9,7 +9,7 @@ class TestCarrito:
 
     def _login(self, driver, credenciales):
         """Helper privado para evitar duplicación de login."""
-        LoginPage(driver).open().login_completo(
+        LoginPage(driver).open().login(
             credenciales["username"], credenciales["password"]
         )
         return InventoryPage(driver)

@@ -41,6 +41,20 @@ class InventoryPage:
         from pages.cart_page import CartPage
         return CartPage(self.driver)
     
+    def add_to_cart(self, nombre_producto: str):
+        """Agrega un producto al carrito por su nombre."""
+        productos = self.obtener_productos()
+        for producto in productos:
+            nombre = producto.find_element(By.CLASS_NAME, "inventory_item_name").text
+            if nombre == nombre_producto:
+                boton = producto.find_element(By.CSS_SELECTOR, "button[data-test*='add-to-cart']")
+                boton.click()
+                return self
+        raise ValueError(f"Producto '{nombre_producto}' no encontrado en el catálogo.")
+    
+    def cart_count(self) -> int:
+        return self.obtener_contador_carrito()
+
     def cerrar_sesion(self):
         self.driver.find_element(*self._MENU_BUTTON).click()
         self.wait.until(EC.visibility_of_element_located(self._LOGOUT_LINK)).click()
