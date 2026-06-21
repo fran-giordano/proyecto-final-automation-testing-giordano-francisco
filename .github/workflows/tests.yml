@@ -1,0 +1,57 @@
+name: Suite de Tests QA
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  tests:
+    name: Ejecutar Tests (UI + API)
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Instalar Firefox
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y firefox
+
+      - name: Instalar dependencias
+        run: pip install -r requirements.txt
+
+      - name: Ejecutar suite completa de tests
+        run: python -m pytest tests/ -v
+
+      - name: Subir reporte HTML
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: reporte-html-${{ github.run_number }}
+          path: reports/reporte.html
+          retention-days: 30
+
+      - name: Subir log de ejecucion
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tests-log-${{ github.run_number }}
+          path: reports/tests.log
+          retention-days: 30
+
+      - name: Subir screenshots de fallos
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: screenshots-${{ github.run_number }}
+          path: reports/screenshots/
+          retention-days: 30
