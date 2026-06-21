@@ -1,0 +1,247 @@
+[1mdiff --git a/README.md b/README.md[m
+[1mindex 3df6e52..37da94d 100644[m
+[1m--- a/README.md[m
+[1m+++ b/README.md[m
+[36m@@ -1,43 +1,100 @@[m
+[31m-#  Pre-Entrega: Automatización QA — SauceDemo[m
+[32m+[m[32m# Pre-Entrega: Automatización QA — SauceDemo[m
+ [m
+[31m-Suite de pruebas automatizadas sobre [saucedemo.com] (https://www.saucedemo.com) utilizando Selenium WebDriver y Python.[m
+[32m+[m[32mSuite de pruebas automatizadas sobre [saucedemo.com](https://www.saucedemo.com) utilizando Selenium WebDriver y Python con patrón Page Object Model (POM).[m
+[32m+[m
+[32m+[m[32m- **Autor:** Giordano Francisco[m[41m  [m
+[32m+[m[32m- **Repositorio:** https://github.com/tu-usuario/pre-entrega-Atesting-GiordanoFrancisco[m
+[32m+[m
+[32m+[m[32m---[m
+ [m
+ ## Tecnologías[m
+[32m+[m
+ - Python 3.10+[m
+ - Selenium WebDriver[m
+[31m-- Pytest[m
+[31m-- Webdriver Manager[m
+[32m+[m[32m- Pytest + Pytest-HTML[m
+[32m+[m
+[32m+[m[32m---[m
+ [m
+[31m-## Estructura[m
+[32m+[m[32m## Estructura del Proyecto[m
+ ```[m
+[31m-pre-entrega-Atesting-[GiordanoFrancisco]/[m
+[31m-├── tests/[m
+[31m-│   └── test_saucedemo.py[m
+[31m-├── utils/[m
+[31m-│   └── helpers.py[m
+[31m-├── reports/[m
+[31m-├── README.md[m
+[31m-└── requirements.txt[m
+[32m+[m[32m## Estructura del Proyecto[m
+[32m+[m
+[32m+[m[32m    pre-entrega-Atesting-GiordanoFrancisco/[m
+[32m+[m[32m    ├── pages/[m
+[32m+[m[32m    │   ├── __init__.py[m
+[32m+[m[32m    │   ├── login_page.py[m
+[32m+[m[32m    │   ├── inventory_page.py[m
+[32m+[m[32m    │   └── cart_page.py[m
+[32m+[m[32m    ├── tests/[m
+[32m+[m[32m    │   ├── __init__.py[m
+[32m+[m[32m    │   ├── test_login.py[m
+[32m+[m[32m    │   ├── test_catalog.py[m
+[32m+[m[32m    │   ├── test_cart.py[m
+[32m+[m[32m    │   └── test_e2e.py[m
+[32m+[m[32m    ├── utils/[m
+[32m+[m[32m    │   └── helpers.py[m
+[32m+[m[32m    ├── conftest.py[m
+[32m+[m[32m    ├── pytest.ini[m
+[32m+[m[32m    ├── README.md[m
+[32m+[m[32m    └── requirements.txt[m
+ ```[m
+ [m
+[32m+[m[32m---[m
+[32m+[m
+ ## Instalación[m
+[32m+[m
+ ```bash[m
+ pip install -r requirements.txt[m
+ ```[m
+ [m
+[31m-## Ejecutar pruebas[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## Ejecución[m
+[32m+[m
+ ```bash[m
+[31m-# Ejecutar todos los tests con reporte HTML[m
+[31m-pytest tests/test_saucedemo.py -v --html=reports/reporte.html[m
+[32m+[m[32m# Todos los tests[m
+[32m+[m[32mpython -m pytest tests/ -v[m
+[32m+[m
+[32m+[m[32m# Con reporte HTML[m
+[32m+[m[32mpython -m pytest tests/ -v --html=reports/reporte.html[m
+ [m
+[31m-# Solo un test específico[m
+[31m-pytest tests/test_saucedemo.py::TestLogin -v[m
+[32m+[m[32m# Por marcador[m
+[32m+[m[32mpython -m pytest -m smoke -v[m
+[32m+[m[32mpython -m pytest -m regression -v[m
+[32m+[m
+[32m+[m[32m# Test específico[m
+[32m+[m[32mpython -m pytest tests/test_login.py::TestLogin::test_login_exitoso -v[m
+ ```[m
+ [m
+[32m+[m[32m---[m
+[32m+[m
+ ## Casos de Prueba[m
+[31m-| Test | Descripción | Criterio validado |[m
+[31m-|------|-------------|-------------------|[m
+[31m-| `test_login_exitoso` | Login con credenciales válidas | Redirect a `/inventory.html` + título "Swag Labs" |[m
+[31m-| `test_catalogo_inventario` | Verificación del catálogo | Título, productos presentes, nombre y precio del primero |[m
+[31m-| `test_agregar_producto_al_carrito` | Flujo de carrito | Contador, navegación y presencia del ítem correcto |[m
+ [m
+[32m+[m[32m| Archivo | Test | Descripción |[m
+[32m+[m[32m|---|---|---|[m
+[32m+[m[32m| `test_login.py` | `test_login_exitoso` | Login con credenciales válidas |[m
+[32m+[m[32m| `test_login.py` | `test_login_invalido` | Login con credenciales inválidas |[m
+[32m+[m[32m| `test_login.py` | `test_usuario_bloqueado` | Usuario bloqueado recibe error |[m
+[32m+[m[32m| `test_login.py` | `test_login_parametrizado` | Múltiples escenarios de login |[m
+[32m+[m[32m| `test_catalog.py` | `test_titulo_inventario` | Verifica título "Products" |[m
+[32m+[m[32m| `test_catalog.py` | `test_productos_visibles` | Verifica presencia de productos |[m
+[32m+[m[32m| `test_catalog.py` | `test_primer_producto_valido` | Nombre y precio válidos |[m
+[32m+[m[32m| `test_cart.py` | `test_agregar_producto_al_carrito` | Agrega y verifica contador |[m
+[32m+[m[32m| `test_cart.py` | `test_eliminar_producto_del_carrito` | Elimina producto del carrito |[m
+[32m+[m[32m| `test_cart.py` | `test_continuar_comprando` | Regresa al inventario |[m
+[32m+[m[32m| `test_e2e.py` | `test_flujo_login_agregar_carrito_logout` | Flujo completo con logout |[m
+[32m+[m[32m| `test_e2e.py` | `test_flujo_agregar_y_eliminar` | Agrega y elimina producto |[m
+[32m+[m[32m| `test_e2e.py` | `test_flujo_multiples_productos` | Múltiples productos en carrito |[m
+[32m+[m
+[32m+[m[32m---[m
+[32m+[m
+[32m+[m[32m## Marcadores[m
+[32m+[m
+[32m+[m[32m| Marcador | Descripción |[m
+[32m+[m[32m|---|---|[m
+[32m+[m[32m| `smoke` | Tests críticos de humo |[m
+[32m+[m[32m| `regression` | Tests de regresión |[m
+[32m+[m[32m| `login` | Funcionalidad de login |[m
+[32m+[m[32m| `catalog` | Funcionalidad de catálogo |[m
+[32m+[m[32m| `cart` | Funcionalidad de carrito |[m
+[32m+[m[32m| `e2e` | Flujos end-to-end |[m
+\ No newline at end of file[m
+[1mdiff --git a/requirements.txt b/requirements.txt[m
+[1mindex c1f99c6..e5a1d86 100644[m
+[1m--- a/requirements.txt[m
+[1m+++ b/requirements.txt[m
+[36m@@ -1,4 +1,4 @@[m
+ selenium==4.20.0[m
+ pytest==8.1.1[m
+ pytest-html==4.1.1[m
+[31m-webdriver-manager==4.0.1 [m
+\ No newline at end of file[m
+[32m+[m[32mwebdriver-manager==4.0.1[m
+\ No newline at end of file[m
+[1mdiff --git a/tests/test_saucedemo.py b/tests/test_saucedemo.py[m
+[1mdeleted file mode 100644[m
+[1mindex 6b86e7c..0000000[m
+[1m--- a/tests/test_saucedemo.py[m
+[1m+++ /dev/null[m
+[36m@@ -1,99 +0,0 @@[m
+[31m-"""[m
+[31m-Suite de pruebas automatizadas para saucedemo.com[m
+[31m-Cubre: Login, Catálogo e interacción con carrito[m
+[31m-"""[m
+[31m-[m
+[31m-import pytest[m
+[31m-from selenium.webdriver.common.by import By[m
+[31m-from utils.helpers import crear_driver, hacer_login, esperar_elemento, BASE_URL[m
+[31m-[m
+[31m-class TestLogin:[m
+[31m-    """ Caso de prueba: Automatización de Login."""[m
+[31m-    [m
+[31m-    def setup_method(self):[m
+[31m-        """ Configuración previa a cada prueba: Crear WebDriver y realizar login. """[m
+[31m-        self.driver = crear_driver()[m
+[31m-[m
+[31m-    def teardown_method(self):[m
+[31m-        """ Limpieza posterior a cada prueba: Cerrar el WebDriver. """[m
+[31m-        self.driver.quit()[m
+[31m-[m
+[31m-    def test_login_exitoso(self):[m
+[31m-        """" Valida que el loigin con credenciales válidas redirija al inventario """[m
+[31m-        hacer_login(self.driver)[m
+[31m-[m
+[31m-        esperar_elemento(self.driver, By.CLASS_NAME, "inventory_list")[m
+[31m-[m
+[31m-        assert "/inventory.html" in self.driver.current_url, \[m
+[31m-        f"URL esperadod con /inventory.html, pero se obtuvo {self.driver.current_url}"[m
+[31m-[m
+[31m-        assert "Swag Labs" in self.driver.title, \[m
+[31m-        f"El título de la página no es 'Swag Labs', se obtuvo {self.driver.title}"[m
+[31m-[m
+[31m-[m
+[31m-class TestCatalogo:[m
+[31m-    """ Caso de prueba: Navegación y Verificacion del Catálogo """[m
+[31m-[m
+[31m-    def setup_method(self):[m
+[31m-        self.driver = crear_driver()[m
+[31m-        hacer_login(self.driver)[m
+[31m-[m
+[31m-    def teardown_method(self):[m
+[31m-        self.driver.quit() [m
+[31m-[m
+[31m-    def test_catalogo_inventario(self):[m
+[31m-        """ Valida titulo, presenciua del producto y datos del primero. """[m
+[31m-[m
+[31m-        titulo = esperar_elemento(self.driver, By.CLASS_NAME, "title").text[m
+[31m-        assert titulo == "Products", \[m
+[31m-            f"El título esperado es 'Products', pero se obtuvo '{titulo}'"[m
+[31m-        [m
+[31m-        productos = self.driver.find_elements(By.CLASS_NAME, "inventory_item")[m
+[31m-        assert len(productos) > 0, "No se encontraron productos en el catálogo."[m
+[31m-[m
+[31m-        primer_nombre = productos[0].find_element(By.CLASS_NAME, "inventory_item_name").text[m
+[31m-        primer_precio = productos[0].find_element(By.CLASS_NAME, "inventory_item_price").text[m
+[31m-[m
+[31m-        assert primer_nombre, "El nombre del primer producto esta vacío"[m
+[31m-        assert primer_precio.startswith("$"), \[m
+[31m-            f"Precio ineseperado: '{primer_precio}'" [m
+[31m-[m
+[31m-        self.driver.find_element(By.ID, "react-burger-menu-btn")[m
+[31m-        self.driver.find_element(By.CLASS_NAME, "product_sort_container")[m
+[31m-[m
+[31m-class TestCarrito:[m
+[31m-    """ Caso de prueba: Interacción con Productos y Carrito. """[m
+[31m-[m
+[31m-    def setup_method(self):[m
+[31m-        self.driver = crear_driver()[m
+[31m-        hacer_login(self.driver)[m
+[31m-[m
+[31m-    def teardown_method(self):[m
+[31m-        self.driver.quit() [m
+[31m-[m
+[31m-    def test_agregar_al_carrito(self):[m
+[31m-        """ Valida que se pueda agregar un producto al carrito y verificar su presencia. """[m
+[31m-[m
+[31m-        primer_producto = esperar_elemento(self.driver, By.CLASS_NAME, "inventory_item")[m
+[31m-        nombre_producto = primer_producto.find_element(By.CLASS_NAME, "inventory_item_name").text[m
+[31m-[m
+[31m-        # Agregar el primer producto al carrito[m
+[31m-        primer_producto.find_element(By.CLASS_NAME, "btn_inventory").click()[m
+[31m-[m
+[31m-        # Verificar que el contador del carrito se actualice[m
+[31m-        contador = self.driver.find_element(By.CLASS_NAME, "shopping_cart_badge")[m
+[31m-        assert contador.text == "1", \[m
+[31m-            f"Se esperaba un contador de '1', pero se obtuvo '{contador.text}'"[m
+[31m-        [m
+[31m-        # Navegar al carrito y verificar el producto agregado[m
+[31m-        self.driver.find_element(By.CLASS_NAME, "shopping_cart_link").click()[m
+[31m-[m
+[31m-        # Verifica que el producto aparece en el carrito[m
+[31m-        items_carrito = esperar_elemento(self.driver, By.CLASS_NAME, "cart_item")[m
+[31m-        nombre_carrito = items_carrito.find_element(By.CLASS_NAME, "inventory_item_name").text[m
+[31m-[m
+[31m-        assert nombre_carrito == nombre_producto, \[m
+[31m-            f"El nombre del producto en el carrito no coincide. Se esperaba '{nombre_producto}', pero se obtuvo '{nombre_carrito}'"[m
+[31m-        [m
+[31m-[m
+[31m-        [m
+\ No newline at end of file[m

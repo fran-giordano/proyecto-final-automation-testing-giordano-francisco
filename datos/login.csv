@@ -1,0 +1,8 @@
+﻿usuario,clave,debe_funcionar,descripcion
+standard_user,secret_sauce,true,Login con usuario estándar válido
+locked_out_user,secret_sauce,false,Usuario bloqueado debe recibir error
+invalid_user,invalid_password,false,Credenciales completamente inválidas
+problem_user,secret_sauce,true,Usuario con problemas visuales pero login válido
+performance_glitch_user,secret_sauce,true,Usuario con glitch de rendimiento pero login válido
+standard_user,wrong_password,false,Usuario correcto con contraseña incorrecta
+,secret_sauce,false,Usuario vacío debe fallar
