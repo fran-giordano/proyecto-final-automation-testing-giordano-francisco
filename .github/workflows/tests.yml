@@ -21,10 +21,11 @@ jobs:
           python-version: "3.12"
           cache: "pip"
 
-      - name: Instalar Firefox y geckodriver
-        run: |
-          sudo apt-get update -qq
-          sudo apt-get install -y firefox firefox-geckodriver
+      - name: Instalar Firefox
+        uses: browser-actions/setup-firefox@latest
+
+      - name: Instalar geckodriver
+        uses: browser-actions/setup-geckodriver@latest
 
       - name: Instalar dependencias
         run: pip install -r requirements.txt
