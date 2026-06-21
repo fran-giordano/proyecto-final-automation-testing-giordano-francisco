@@ -25,7 +25,11 @@ jobs:
         uses: browser-actions/setup-firefox@latest
 
       - name: Instalar geckodriver
-        uses: browser-actions/setup-geckodriver@latest
+        run: |
+          wget -q "https://github.com/mozilla/geckodriver/releases/download/v0.35.0/geckodriver-v0.35.0-linux64.tar.gz"
+          tar -xzf geckodriver-v0.35.0-linux64.tar.gz
+          sudo mv geckodriver /usr/local/bin/geckodriver
+          geckodriver --version
 
       - name: Instalar dependencias
         run: pip install -r requirements.txt
