@@ -8,7 +8,7 @@ def leer_csv_login(ruta_archivo):
     """
 
     datos = []
-    with open(ruta_archivo, newline='', encoding='utf-8') as csvfile:
+    with open(ruta_archivo, newline='', encoding='utf-8-sig') as csvfile:
         lector = csv.DictReader(csvfile)
         for fila in lector:
             datos.append((
@@ -23,7 +23,7 @@ def leer_csv_login(ruta_archivo):
 def leer_json_productos(ruta_archivo):
     """Lee un archivo JSON y devuelve una lista de diccionarios con los datos de los productos"""
 
-    with open(ruta_archivo, 'r', encoding='utf-8') as f:
+    with open(ruta_archivo, 'r', encoding='utf-8-sig') as f:
         return json.load(f)
 
 
