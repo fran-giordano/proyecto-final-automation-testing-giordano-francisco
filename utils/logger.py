@@ -1,7 +1,7 @@
 ﻿import logging
 import pathlib
 
-_LOG_DIR = pathlib.Path(__file__).parent.parent / "reports"
+_LOG_DIR = pathlib.Path(__file__).parent.parent / "logs"
 _LOG_DIR.mkdir(exist_ok=True)
 
 def get_logger(name: str) -> logging.Logger:

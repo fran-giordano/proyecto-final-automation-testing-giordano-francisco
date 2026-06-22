@@ -7,6 +7,6 @@ venv/
 .pytest_cache/
 reports/*.html
 reports/screenshots/
-reports/tests.log
+logs/*.log
 *.swp
 *.swo

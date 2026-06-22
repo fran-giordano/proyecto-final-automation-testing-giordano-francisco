@@ -45,6 +45,18 @@ def usuario_bloqueado():
     return {"username": "locked_out_user", "password": "secret_sauce"}
 
 
+# ── Fixtures de datos para pruebas de API ──────────────────────────────────────
+
+@pytest.fixture
+def post_data():
+    return {"title": "TFI QA Automation", "body": "Framework de testing con Pytest y Requests", "userId": 1}
+
+
+@pytest.fixture
+def post_actualizado():
+    return {"id": 1, "title": "Título actualizado", "body": "Contenido actualizado", "userId": 1}
+
+
 # ── Reporte HTML ───────────────────────────────────────────────────────────────
 
 def pytest_configure(config):
